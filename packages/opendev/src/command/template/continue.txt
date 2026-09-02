@@ -1,0 +1,18 @@
+Continue the previous task in this repository (worktree: `${path}`).
+
+## How to start
+
+1. Re-read the last assistant message and the final user prompt to recall exactly what was being done and where it stopped.
+2. Inspect the repo state to confirm what already changed: run `git status`, `git diff --stat`, `git diff', `git log --oneline -5`, and/or read conversation history and use memories.
+3. Find out what was unfinished from the previous task
+
+## What to do
+
+- Pick up the work exactly where it stopped and carry it through to completion.
+- If a requested change is only partially applied, finish the remaining edits.
+- If a task was described but not started, start it now.
+- If the previous turn left verification incomplete, run the project's tests / typecheck / lint and fix any failures.
+- Do not redo work that is already complete; verify it instead.
+
+User-provided focus or constraints (honor these):
+$ARGUMENTS
