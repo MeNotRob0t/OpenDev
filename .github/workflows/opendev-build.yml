@@ -114,24 +114,35 @@ jobs:
         run: bun run script/build.ts ${{ matrix.build_args }}
         env:
           OPENCODE_VERSION: ${{ needs.version.outputs.version }}
-          OPENCODE_RELEASE: ${{ needs.version.outputs.release }}
-          GH_REPO: ${{ env.GH_REPO }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENCODE_RELEASE: "false"
 
       - name: Rename artifacts
         working-directory: packages/opendev/dist
         shell: bash
         run: |
-          # Find the built directory and rename archives
+          # Map directory names to build names
+          declare -A NAMES=(
+            ["opendev-linux-arm64"]="OpenDev_Build_Linux_arm64"
+            ["opendev-linux-x64"]="OpenDev_Build_Linux_x64"
+            ["opendev-linux-x64-baseline"]="OpenDev_Build_Linux_x64"
+            ["opendev-linux-arm64-musl"]="OpenDev_Build_Linux_arm64_musl"
+            ["opendev-linux-x64-musl"]="OpenDev_Build_Linux_x64_musl"
+            ["opendev-darwin-arm64"]="OpenDev_Build_macOS_arm64"
+            ["opendev-darwin-x64"]="OpenDev_Build_macOS_x64"
+            ["opendev-darwin-x64-baseline"]="OpenDev_Build_macOS_x64"
+            ["opendev-windows-arm64"]="OpenDev_Build_Windows_arm64"
+            ["opendev-windows-x64"]="OpenDev_Build_Windows_x64"
+            ["opendev-windows-x64-baseline"]="OpenDev_Build_Windows_x64"
+          )
+          
           for dir in */; do
+            DIR_NAME="${dir%/}"
             if [[ -d "$dir/bin" ]]; then
-              # Get the build name from directory
-              BUILD_DIR=$(basename "$dir")
-              # Create archive with proper name
-              if [[ "$BUILD_DIR" == *"linux"* ]]; then
-                tar -czf "../../${BUILD_DIR}.tar.gz" -C "$dir/bin" .
+              BUILD_NAME="${NAMES[$DIR_NAME]:-$DIR_NAME}"
+              if [[ "$DIR_NAME" == *"linux"* ]]; then
+                tar -czf "../../${BUILD_NAME}.tar.gz" -C "$dir/bin" .
               else
-                zip -r "../../${BUILD_DIR}.zip" -C "$dir/bin" .
+                zip -r "../../${BUILD_NAME}.zip" -C "$dir/bin" .
               fi
             fi
           done
