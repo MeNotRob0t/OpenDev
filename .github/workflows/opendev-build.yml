@@ -152,8 +152,8 @@ jobs:
         with:
           name: opendev-${{ matrix.target }}
           path: |
-            packages/opendev/dist/*.tar.gz
-            packages/opendev/dist/*.zip
+            packages/opendev/*.tar.gz
+            packages/opendev/*.zip
 
   release:
     needs: [version, build]
@@ -204,7 +204,7 @@ jobs:
           prerelease: ${{ needs.version.outputs.prerelease }}
           repo: ${{ env.GH_REPO }}
           files: |
-            artifacts/opendev-*/*.tar.gz
-            artifacts/opendev-*/*.zip
+            artifacts/*.tar.gz
+            artifacts/*.zip
         env:
           GITHUB_TOKEN: ${{ env.OPENDEV_BUILDS_PAT }}
