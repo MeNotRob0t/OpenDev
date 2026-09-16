@@ -37,6 +37,7 @@ permissions:
 
 env:
   GH_REPO: MeNotRob0t/OpenDev_Builds
+  OPENDEV_BUILDS_PAT: ${{ secrets.OPENDEV_BUILDS_PAT }}
 
 jobs:
   version:
@@ -195,4 +196,4 @@ jobs:
             artifacts/opendev-*/*.tar.gz
             artifacts/opendev-*/*.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.OPENDEV_BUILDS_PAT }}
