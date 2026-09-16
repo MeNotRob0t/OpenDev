@@ -27,7 +27,7 @@
         "turbo": "2.10.2",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/app": {
+    "packages/app": {
       "name": "@opencode-ai/app",
       "version": "1.18.10",
       "dependencies": {
@@ -94,7 +94,7 @@
         "vite-plugin-solid": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/cli": {
+    "packages/cli": {
       "name": "@opencode-ai/cli",
       "version": "1.18.10",
       "bin": {
@@ -119,7 +119,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/client": {
+    "packages/client": {
       "name": "@opencode-ai/client",
       "dependencies": {
         "@opencode-ai/protocol": "workspace:*",
@@ -142,7 +142,7 @@
         "effect",
       ],
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/codemode": {
+    "packages/codemode": {
       "name": "@opencode-ai/codemode",
       "version": "1.18.10",
       "dependencies": {
@@ -156,7 +156,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/app": {
+    "packages/console/app": {
       "name": "@opencode-ai/console-app",
       "version": "1.18.10",
       "dependencies": {
@@ -192,7 +192,7 @@
         "wrangler": "4.50.0",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/core": {
+    "packages/console/core": {
       "name": "@opencode-ai/console-core",
       "version": "1.18.10",
       "dependencies": {
@@ -219,7 +219,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/function": {
+    "packages/console/function": {
       "name": "@opencode-ai/console-function",
       "version": "1.18.10",
       "dependencies": {
@@ -241,7 +241,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/mail": {
+    "packages/console/mail": {
       "name": "@opencode-ai/console-mail",
       "version": "1.18.10",
       "dependencies": {
@@ -253,7 +253,7 @@
         "solid-js": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/resource": {
+    "packages/console/resource": {
       "name": "@opencode-ai/console-resource",
       "dependencies": {
         "@cloudflare/workers-types": "catalog:",
@@ -265,7 +265,7 @@
         "cloudflare": "5.2.0",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/support": {
+    "packages/console/support": {
       "name": "@opencode-ai/console-support",
       "version": "1.18.10",
       "dependencies": {
@@ -285,7 +285,7 @@
         "wrangler": "4.50.0",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/core": {
+    "packages/core": {
       "name": "@opencode-ai/core",
       "version": "1.18.10",
       "bin": {
@@ -379,7 +379,7 @@
         "drizzle-kit": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/desktop": {
+    "packages/desktop": {
       "name": "@opencode-ai/desktop",
       "version": "1.18.10",
       "dependencies": {
@@ -433,7 +433,7 @@
         "@parcel/watcher-win32-x64": "2.5.1",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/effect-drizzle-sqlite": {
+    "packages/effect-drizzle-sqlite": {
       "name": "@opencode-ai/effect-drizzle-sqlite",
       "version": "1.18.10",
       "dependencies": {
@@ -447,7 +447,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/effect-sqlite-node": {
+    "packages/effect-sqlite-node": {
       "name": "@opencode-ai/effect-sqlite-node",
       "version": "1.18.10",
       "dependencies": {
@@ -459,7 +459,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/enterprise": {
+    "packages/enterprise": {
       "name": "@opencode-ai/enterprise",
       "version": "1.18.10",
       "dependencies": {
@@ -491,7 +491,7 @@
         "vite": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/function": {
+    "packages/function": {
       "name": "@opencode-ai/function",
       "version": "1.18.10",
       "dependencies": {
@@ -507,7 +507,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/http-recorder": {
+    "packages/http-recorder": {
       "name": "@opencode-ai/http-recorder",
       "version": "1.18.10",
       "dependencies": {
@@ -526,7 +526,7 @@
         "effect": "4.0.0-beta.83",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/httpapi-codegen": {
+    "packages/httpapi-codegen": {
       "name": "@opencode-ai/httpapi-codegen",
       "dependencies": {
         "effect": "catalog:",
@@ -538,7 +538,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/llm": {
+    "packages/llm": {
       "name": "@opencode-ai/llm",
       "version": "1.18.10",
       "dependencies": {
@@ -557,7 +557,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/opendev": {
+    "packages/opendev": {
       "name": "opendev",
       "version": "1.18.10",
       "bin": {
@@ -688,7 +688,7 @@
         "why-is-node-running": "3.2.2",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/plugin": {
+    "packages/plugin": {
       "name": "@opencode-ai/plugin",
       "version": "1.18.10",
       "dependencies": {
@@ -717,7 +717,7 @@
         "@opentui/solid",
       ],
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/protocol": {
+    "packages/protocol": {
       "name": "@opencode-ai/protocol",
       "dependencies": {
         "@opencode-ai/schema": "workspace:*",
@@ -729,7 +729,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/schema": {
+    "packages/schema": {
       "name": "@opencode-ai/schema",
       "dependencies": {
         "effect": "catalog:",
@@ -740,7 +740,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/script": {
+    "packages/script": {
       "name": "@opencode-ai/script",
       "dependencies": {
         "semver": "^7.6.3",
@@ -750,7 +750,7 @@
         "@types/semver": "^7.5.8",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/sdk-next": {
+    "packages/sdk-next": {
       "name": "@opencode-ai/sdk-next",
       "dependencies": {
         "@opencode-ai/client": "workspace:*",
@@ -764,7 +764,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/sdk/js": {
+    "packages/sdk/js": {
       "name": "@opencode-ai/sdk",
       "version": "1.18.10",
       "dependencies": {
@@ -779,7 +779,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/server": {
+    "packages/server": {
       "name": "@opencode-ai/server",
       "version": "1.18.10",
       "dependencies": {
@@ -794,7 +794,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/session-ui": {
+    "packages/session-ui": {
       "name": "@opencode-ai/session-ui",
       "version": "1.18.10",
       "dependencies": {
@@ -839,7 +839,7 @@
         "vite": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/slack": {
+    "packages/slack": {
       "name": "@opencode-ai/slack",
       "version": "1.18.10",
       "dependencies": {
@@ -852,7 +852,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/app": {
+    "packages/stats/app": {
       "name": "@opencode-ai/stats-app",
       "version": "1.18.10",
       "dependencies": {
@@ -886,7 +886,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/core": {
+    "packages/stats/core": {
       "name": "@opencode-ai/stats-core",
       "version": "1.18.10",
       "dependencies": {
@@ -905,7 +905,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/server": {
+    "packages/stats/server": {
       "name": "@opencode-ai/stats-server",
       "version": "1.18.10",
       "dependencies": {
@@ -923,7 +923,7 @@
         "typescript": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/storybook": {
+    "packages/storybook": {
       "name": "@opencode-ai/storybook",
       "devDependencies": {
         "@opencode-ai/session-ui": "workspace:*",
@@ -947,7 +947,7 @@
         "vite": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/tui": {
+    "packages/tui": {
       "name": "@opencode-ai/tui",
       "version": "1.18.10",
       "dependencies": {
@@ -974,7 +974,7 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/ui": {
+    "packages/ui": {
       "name": "@opencode-ai/ui",
       "version": "1.18.10",
       "dependencies": {
@@ -1026,7 +1026,7 @@
         "solid-js": "^1.9.0",
       },
     },
-    "../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/web": {
+    "packages/web": {
       "name": "@opencode-ai/web",
       "version": "1.18.10",
       "dependencies": {
@@ -1057,50 +1057,6 @@
         "@astrojs/check": "0.9.6",
         "@types/node": "catalog:",
         "opendev": "workspace:*",
-        "typescript": "catalog:",
-      },
-    },
-    "packages/plugin": {
-      "name": "@opencode-ai/plugin",
-      "version": "1.18.10",
-      "dependencies": {
-        "@ai-sdk/provider": "3.0.8",
-        "@opencode-ai/sdk": "workspace:*",
-        "effect": "catalog:",
-        "zod": "catalog:",
-      },
-      "devDependencies": {
-        "@opentui/core": "catalog:",
-        "@opentui/keymap": "catalog:",
-        "@opentui/solid": "catalog:",
-        "@tsconfig/node22": "catalog:",
-        "@types/node": "catalog:",
-        "@typescript/native-preview": "catalog:",
-        "typescript": "catalog:",
-      },
-      "peerDependencies": {
-        "@opentui/core": ">=0.4.5",
-        "@opentui/keymap": ">=0.4.5",
-        "@opentui/solid": ">=0.4.5",
-      },
-      "optionalPeers": [
-        "@opentui/core",
-        "@opentui/keymap",
-        "@opentui/solid",
-      ],
-    },
-    "packages/sdk/js": {
-      "name": "@opencode-ai/sdk",
-      "version": "1.18.10",
-      "dependencies": {
-        "cross-spawn": "catalog:",
-      },
-      "devDependencies": {
-        "@hey-api/openapi-ts": "0.90.10",
-        "@tsconfig/node22": "catalog:",
-        "@types/cross-spawn": "catalog:",
-        "@types/node": "catalog:",
-        "@typescript/native-preview": "catalog:",
         "typescript": "catalog:",
       },
     },
@@ -1990,75 +1946,75 @@
 
     "@openauthjs/openauth": ["@openauthjs/openauth@0.0.0-20250322224806", "", { "dependencies": { "@standard-schema/spec": "1.0.0-beta.3", "aws4fetch": "1.0.20", "jose": "5.9.6" }, "peerDependencies": { "arctic": "^2.2.2", "hono": "^4.0.0" } }, "sha512-p5IWSRXvABcwocH2dNI0w8c1QJelIOFulwhKk+aLLFfUbs8u1pr7kQbYe8yCSM2+bcLHiwbogpUQc2ovrGwCuw=="],
 
-    "@opencode-ai/app": ["@opencode-ai/app@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/app"],
+    "@opencode-ai/app": ["@opencode-ai/app@workspace:packages/app"],
 
-    "@opencode-ai/cli": ["@opencode-ai/cli@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/cli"],
+    "@opencode-ai/cli": ["@opencode-ai/cli@workspace:packages/cli"],
 
-    "@opencode-ai/client": ["@opencode-ai/client@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/client"],
+    "@opencode-ai/client": ["@opencode-ai/client@workspace:packages/client"],
 
-    "@opencode-ai/codemode": ["@opencode-ai/codemode@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/codemode"],
+    "@opencode-ai/codemode": ["@opencode-ai/codemode@workspace:packages/codemode"],
 
-    "@opencode-ai/console-app": ["@opencode-ai/console-app@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/app"],
+    "@opencode-ai/console-app": ["@opencode-ai/console-app@workspace:packages/console/app"],
 
-    "@opencode-ai/console-core": ["@opencode-ai/console-core@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/core"],
+    "@opencode-ai/console-core": ["@opencode-ai/console-core@workspace:packages/console/core"],
 
-    "@opencode-ai/console-function": ["@opencode-ai/console-function@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/function"],
+    "@opencode-ai/console-function": ["@opencode-ai/console-function@workspace:packages/console/function"],
 
-    "@opencode-ai/console-mail": ["@opencode-ai/console-mail@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/mail"],
+    "@opencode-ai/console-mail": ["@opencode-ai/console-mail@workspace:packages/console/mail"],
 
-    "@opencode-ai/console-resource": ["@opencode-ai/console-resource@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/resource"],
+    "@opencode-ai/console-resource": ["@opencode-ai/console-resource@workspace:packages/console/resource"],
 
-    "@opencode-ai/console-support": ["@opencode-ai/console-support@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/console/support"],
+    "@opencode-ai/console-support": ["@opencode-ai/console-support@workspace:packages/console/support"],
 
-    "@opencode-ai/core": ["@opencode-ai/core@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/core"],
+    "@opencode-ai/core": ["@opencode-ai/core@workspace:packages/core"],
 
-    "@opencode-ai/desktop": ["@opencode-ai/desktop@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/desktop"],
+    "@opencode-ai/desktop": ["@opencode-ai/desktop@workspace:packages/desktop"],
 
-    "@opencode-ai/effect-drizzle-sqlite": ["@opencode-ai/effect-drizzle-sqlite@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/effect-drizzle-sqlite"],
+    "@opencode-ai/effect-drizzle-sqlite": ["@opencode-ai/effect-drizzle-sqlite@workspace:packages/effect-drizzle-sqlite"],
 
-    "@opencode-ai/effect-sqlite-node": ["@opencode-ai/effect-sqlite-node@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/effect-sqlite-node"],
+    "@opencode-ai/effect-sqlite-node": ["@opencode-ai/effect-sqlite-node@workspace:packages/effect-sqlite-node"],
 
-    "@opencode-ai/enterprise": ["@opencode-ai/enterprise@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/enterprise"],
+    "@opencode-ai/enterprise": ["@opencode-ai/enterprise@workspace:packages/enterprise"],
 
-    "@opencode-ai/function": ["@opencode-ai/function@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/function"],
+    "@opencode-ai/function": ["@opencode-ai/function@workspace:packages/function"],
 
-    "@opencode-ai/http-recorder": ["@opencode-ai/http-recorder@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/http-recorder"],
+    "@opencode-ai/http-recorder": ["@opencode-ai/http-recorder@workspace:packages/http-recorder"],
 
-    "@opencode-ai/httpapi-codegen": ["@opencode-ai/httpapi-codegen@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/httpapi-codegen"],
+    "@opencode-ai/httpapi-codegen": ["@opencode-ai/httpapi-codegen@workspace:packages/httpapi-codegen"],
 
-    "@opencode-ai/llm": ["@opencode-ai/llm@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/llm"],
+    "@opencode-ai/llm": ["@opencode-ai/llm@workspace:packages/llm"],
 
-    "@opencode-ai/plugin": ["@opencode-ai/plugin@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/plugin"],
+    "@opencode-ai/plugin": ["@opencode-ai/plugin@workspace:packages/plugin"],
 
-    "@opencode-ai/protocol": ["@opencode-ai/protocol@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/protocol"],
+    "@opencode-ai/protocol": ["@opencode-ai/protocol@workspace:packages/protocol"],
 
-    "@opencode-ai/schema": ["@opencode-ai/schema@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/schema"],
+    "@opencode-ai/schema": ["@opencode-ai/schema@workspace:packages/schema"],
 
-    "@opencode-ai/script": ["@opencode-ai/script@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/script"],
+    "@opencode-ai/script": ["@opencode-ai/script@workspace:packages/script"],
 
-    "@opencode-ai/sdk": ["@opencode-ai/sdk@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/sdk/js"],
+    "@opencode-ai/sdk": ["@opencode-ai/sdk@workspace:packages/sdk/js"],
 
-    "@opencode-ai/sdk-next": ["@opencode-ai/sdk-next@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/sdk-next"],
+    "@opencode-ai/sdk-next": ["@opencode-ai/sdk-next@workspace:packages/sdk-next"],
 
-    "@opencode-ai/server": ["@opencode-ai/server@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/server"],
+    "@opencode-ai/server": ["@opencode-ai/server@workspace:packages/server"],
 
-    "@opencode-ai/session-ui": ["@opencode-ai/session-ui@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/session-ui"],
+    "@opencode-ai/session-ui": ["@opencode-ai/session-ui@workspace:packages/session-ui"],
 
-    "@opencode-ai/slack": ["@opencode-ai/slack@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/slack"],
+    "@opencode-ai/slack": ["@opencode-ai/slack@workspace:packages/slack"],
 
-    "@opencode-ai/stats-app": ["@opencode-ai/stats-app@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/app"],
+    "@opencode-ai/stats-app": ["@opencode-ai/stats-app@workspace:packages/stats/app"],
 
-    "@opencode-ai/stats-core": ["@opencode-ai/stats-core@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/core"],
+    "@opencode-ai/stats-core": ["@opencode-ai/stats-core@workspace:packages/stats/core"],
 
-    "@opencode-ai/stats-server": ["@opencode-ai/stats-server@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/stats/server"],
+    "@opencode-ai/stats-server": ["@opencode-ai/stats-server@workspace:packages/stats/server"],
 
-    "@opencode-ai/storybook": ["@opencode-ai/storybook@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/storybook"],
+    "@opencode-ai/storybook": ["@opencode-ai/storybook@workspace:packages/storybook"],
 
-    "@opencode-ai/tui": ["@opencode-ai/tui@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/tui"],
+    "@opencode-ai/tui": ["@opencode-ai/tui@workspace:packages/tui"],
 
-    "@opencode-ai/ui": ["@opencode-ai/ui@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/ui"],
+    "@opencode-ai/ui": ["@opencode-ai/ui@workspace:packages/ui"],
 
-    "@opencode-ai/web": ["@opencode-ai/web@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/web"],
+    "@opencode-ai/web": ["@opencode-ai/web@workspace:packages/web"],
 
     "@openrouter/ai-sdk-provider": ["@openrouter/ai-sdk-provider@2.9.0", "", { "peerDependencies": { "ai": "^6.0.0", "zod": "^3.25.0 || ^4.0.0" } }, "sha512-Seva+NCa0WUQnJIUE5GzHsUv1WTIeyqwz0ELl2VtS6NP+eF+77yCXGFVOMbvoCM7QMjlnhv7931e89R+8pJdcQ=="],
 
@@ -4672,7 +4628,7 @@
 
     "opencode-poe-auth": ["opencode-poe-auth@0.0.1", "", { "dependencies": { "open": "^10.0.0", "poe-oauth": "*" }, "peerDependencies": { "@opencode-ai/plugin": "*" } }, "sha512-cXqTlS6AXHzo1oBdosnxbT47ZJEZ9WXn050X8Re6wZ1vaNnTpB/l2fMQt90evT7RBK0fB8UjXQUDMKyd7bbiqg=="],
 
-    "opendev": ["opendev@workspace:../Wins.Me/Documents/AgentProject/OpenDev-master/OpenDev-master/packages/opendev"],
+    "opendev": ["opendev@workspace:packages/opendev"],
 
     "openid-client": ["openid-client@5.6.4", "", { "dependencies": { "jose": "^4.15.4", "lru-cache": "^6.0.0", "object-hash": "^2.2.0", "oidc-token-hash": "^5.0.3" } }, "sha512-T1h3B10BRPKfcObdBklX639tVz+xh34O7GjofqrqiAQdm7eHsQ00ih18x6wuJ/E6FxdtS2u3FmUGPDeEcMwzNA=="],
 
@@ -5976,8 +5932,6 @@
 
     "@fastify/proxy-addr/ipaddr.js": ["ipaddr.js@2.4.0", "", {}, "sha512-9VGk3HGanVE6JoZXHiCpnGy5X0jYDnN4EA4lntFPj+1vIWlFhIylq2CrrCOJH9EAhc5CYhq18F2Av2tgoAPsYQ=="],
 
-    "@gitlab/opencode-gitlab-auth/@opencode-ai/plugin": ["@opencode-ai/plugin@workspace:packages/plugin"],
-
     "@hey-api/json-schema-ref-parser/js-yaml": ["js-yaml@4.1.1", "", { "dependencies": { "argparse": "^2.0.1" }, "bin": { "js-yaml": "bin/js-yaml.js" } }, "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA=="],
 
     "@hey-api/openapi-ts/open": ["open@11.0.0", "", { "dependencies": { "default-browser": "^5.4.0", "define-lazy-prop": "^3.0.0", "is-in-ssh": "^1.0.0", "is-inside-container": "^1.0.0", "powershell-utils": "^0.1.0", "wsl-utils": "^0.3.0" } }, "sha512-smsWv2LzFjP03xmvFoJ331ss6h+jixfA4UUV/Bsiyuu4YJPfN+FIQGOIiv4w9/+MoHkfkJ22UIaQWRVFRfH6Vw=="],
@@ -6458,8 +6412,6 @@
 
     "nypm/tinyexec": ["tinyexec@1.2.4", "", {}, "sha512-SHf/r48b7vOrjve9PxJo3MN5v5yuyjHvdUcrQffT3WXMUfnGmHDVbC4k3sHJaJTgZCwpUplIaAo5ANtMyp3YHg=="],
 
-    "opencode-gitlab-auth/@opencode-ai/plugin": ["@opencode-ai/plugin@workspace:packages/plugin"],
-
     "opencode-gitlab-auth/open": ["open@10.2.0", "", { "dependencies": { "default-browser": "^5.2.1", "define-lazy-prop": "^3.0.0", "is-inside-container": "^1.0.0", "wsl-utils": "^0.1.0" } }, "sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA=="],
 
     "opendev/@ai-sdk/cerebras": ["@ai-sdk/cerebras@2.0.60", "", { "dependencies": { "@ai-sdk/openai-compatible": "2.0.54", "@ai-sdk/provider": "3.0.12", "@ai-sdk/provider-utils": "4.0.33" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Rnok3cThg6awBwaDSyiZpgRpbV7pqxGYrA89LODCo5cuEHeP2h0AM0lLHP7zIkclAdXfOm4wldKi/S2T/DGCOw=="],
@@ -6785,8 +6737,6 @@
     "@expressive-code/plugin-shiki/shiki/@shikijs/themes": ["@shikijs/themes@3.23.0", "", { "dependencies": { "@shikijs/types": "3.23.0" } }, "sha512-5qySYa1ZgAT18HR/ypENL9cUSGOeI2x+4IvYJu4JgVJdizn6kG4ia5Q1jDEOi7gTbN4RbuYtmHh0W3eccOrjMA=="],
 
     "@expressive-code/plugin-shiki/shiki/@shikijs/types": ["@shikijs/types@3.23.0", "", { "dependencies": { "@shikijs/vscode-textmate": "^10.0.2", "@types/hast": "^3.0.4" } }, "sha512-3JZ5HXOZfYjsYSk0yPwBrkupyYSLpAE26Qc0HLghhZNGTZg/SKxXIIgoxOpmmeQP0RRSDJTk1/vPfw9tbw+jSQ=="],
-
-    "@gitlab/opencode-gitlab-auth/@opencode-ai/plugin/@opencode-ai/sdk": ["@opencode-ai/sdk@workspace:packages/sdk/js"],
 
     "@hey-api/json-schema-ref-parser/js-yaml/argparse": ["argparse@2.0.1", "", {}, "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="],
 
@@ -7199,8 +7149,6 @@
     "motion/framer-motion/motion-dom": ["motion-dom@12.40.0", "", { "dependencies": { "motion-utils": "^12.39.0" } }, "sha512-HxU3ZaBwNPVQUBQf1xxgq+7JrPNZvjLVxgbpEZL7RrWJnsxOf0/OM+yrHG9ogLQ31Do/r57Oz2gQWPK+6q62mg=="],
 
     "motion/framer-motion/motion-utils": ["motion-utils@12.39.0", "", {}, "sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ=="],
-
-    "opencode-gitlab-auth/@opencode-ai/plugin/@opencode-ai/sdk": ["@opencode-ai/sdk@workspace:packages/sdk/js"],
 
     "opencode-gitlab-auth/open/wsl-utils": ["wsl-utils@0.1.0", "", { "dependencies": { "is-wsl": "^3.1.0" } }, "sha512-h3Fbisa2nKGPxCpm89Hk33lBLsnaGBvctQopaBSOW/uIs6FTe1ATyAnKFJrzVs9vpGdsTe73WF3V4lIsk4Gacw=="],
 

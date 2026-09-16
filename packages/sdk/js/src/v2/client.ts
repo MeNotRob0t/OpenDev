@@ -1,5 +1,7 @@
-export * from "./gen/types.gen.js"
+import type { FileSystemEntry as LocationFileSystemEntry } from "./gen/types.gen.js"
 export type { FileSystemEntry as LocationFileSystemEntry } from "./gen/types.gen.js"
+export type { Part } from "./gen/types.gen.js"
+export type { UserMessage } from "./gen/types.gen.js"
 
 import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
@@ -35,8 +37,8 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
       if (!url.searchParams.has(query)) {
         url.searchParams.set(query, value)
       }
+      changed = true
     }
-    changed = true
   }
 
   if (!changed) return request
@@ -50,7 +52,6 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
 export function createOpencodeClient(config?: Config & { directory?: string; experimental_workspaceID?: string }) {
   if (!config?.fetch) {
     const customFetch: any = (req: any) => {
-      // @ts-ignore
       req.timeout = false
       return fetch(req)
     }
@@ -75,13 +76,13 @@ export function createOpencodeClient(config?: Config & { directory?: string; exp
   }
 
   const client = createClient(config)
-  client.interceptors.request.use((request) =>
+  client.interceptors.request.use((request: Request) =>
     rewrite(request, {
       directory: config?.directory,
       workspace: config?.experimental_workspaceID,
     }),
   )
-  client.interceptors.response.use((response) => {
+  client.interceptors.response.use((response: Response) => {
     const contentType = response.headers.get("content-type")
     if (contentType === "text/html")
       throw new Error("Request is not supported by this version of OpenCode Server (Server responded with text/html)")
