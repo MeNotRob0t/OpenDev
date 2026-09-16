@@ -261,15 +261,11 @@ export const TuiThreadCommand = cmd({
           fetch: transport.fetch,
           headers,
         })
-      } catch (error) {
+} catch (error) {
         UI.error(errorMessage(error))
         process.exitCode = 1
         return
       }
-
-      setTimeout(() => {
-        client.call("checkUpgrade", { directory: cwd }).catch(() => {})
-      }, 1000).unref?.()
 
       try {
         const { Effect } = await import("effect")
