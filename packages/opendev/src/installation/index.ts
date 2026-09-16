@@ -72,6 +72,9 @@ const ChocoPackage = Schema.Struct({
 })
 const ScoopManifest = NpmPackage
 
+const OPENDEV_BUILDS_REPO = "MeNotRob0t/OpenDev_Builds"
+const OPENDEV_BUILDS_API = `https://api.github.com/repos/${OPENDEV_BUILDS_REPO}/releases/latest`
+
 export interface Interface {
   readonly info: () => Effect.Effect<Info>
   readonly method: () => Effect.Effect<Method>
@@ -144,14 +147,47 @@ const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProcess.Serv
 
     const upgradeCurl = Effect.fnUntraced(
       function* (target: string) {
-        const response = yield* httpOk.execute(HttpClientRequest.get("https://opencode.ai/install"))
-        const body = yield* response.text
-        const bodyBytes = new TextEncoder().encode(body)
+        const response = yield* httpOk.execute(HttpClientRequest.get(OPENDEV_BUILDS_API).pipe(
+          HttpClientRequest.acceptJson,
+        ))
+        const data = yield* HttpClientResponse.schemaBodyJson(GitHubRelease)(response)
+        const tagName = data.tag_name.replace(/^v/, "")
+        
+        // Find the appropriate asset for the current platform
+        const assetsUrl = `https://api.github.com/repos/${OPENDEV_BUILDS_REPO}/releases/tags/v${tagName}`
+        const assetsResponse = yield* httpOk.execute(HttpClientRequest.get(assetsUrl).pipe(
+          HttpClientRequest.acceptJson,
+        ))
+        const assetsData = yield* assetsResponse.json
+        
+        const platform = process.platform
+        const arch = process.arch
+        let assetName: string
+        
+        if (platform === "linux") {
+          assetName = arch === "arm64" ? "OpenDev_Build_Linux_arm64.tar.gz" : "OpenDev_Build_Linux_x64.tar.gz"
+        } else if (platform === "darwin") {
+          assetName = arch === "arm64" ? "OpenDev_Build_macOS_arm64.tar.gz" : "OpenDev_Build_macOS_x64.tar.gz"
+        } else if (platform === "win32") {
+          assetName = arch === "arm64" ? "OpenDev_Build_Windows_arm64.zip" : "OpenDev_Build_Windows_x64.zip"
+        } else {
+          return yield* new UpgradeFailedError({ stderr: `Unsupported platform: ${platform}` })
+        }
+        
+        const asset = assetsData.assets.find((a: any) => a.name === assetName)
+        if (!asset) {
+          return yield* new UpgradeFailedError({ stderr: `No build found for ${assetName}` })
+        }
+        
+        const downloadUrl = asset.browser_download_url
+        const downloadResponse = yield* httpOk.execute(HttpClientRequest.get(downloadUrl))
+        const downloadBody = yield* downloadResponse.arrayBuffer
+        
         const shell = yield* upgradeScriptShell()
         const result = yield* appProcess.run(
           ChildProcess.make(shell, [], {
-            stdin: Stream.make(bodyBytes),
-            env: { VERSION: target },
+            stdin: Stream.make(new Uint8Array(downloadBody)),
+            env: { VERSION: target, ASSET_NAME: assetName },
             extendEnv: true,
           }),
         )
@@ -197,7 +233,7 @@ const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProcess.Serv
         for (const check of checks) {
           const output = yield* check.command()
           const installedName =
-            check.name === "brew" || check.name === "choco" || check.name === "scoop" ? "opencode" : "opencode-ai"
+            check.name === "brew" || check.name === "choco" || check.name === "scoop" ? "opendev" : "opencode-ai"
           if (output.includes(installedName)) {
             return check.name
           }
@@ -255,7 +291,7 @@ const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProcess.Serv
         }
 
         const response = yield* httpOk.execute(
-          HttpClientRequest.get("https://api.github.com/repos/anomalyco/opencode/releases/latest").pipe(
+          HttpClientRequest.get(OPENDEV_BUILDS_API).pipe(
             HttpClientRequest.acceptJson,
           ),
         )
@@ -269,13 +305,10 @@ const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProcess.Serv
             upgradeResult = yield* upgradeCurl(target)
             break
           case "npm":
-            upgradeResult = yield* run(["npm", "install", "-g", `opencode-ai@${target}`])
-            break
           case "pnpm":
-            upgradeResult = yield* run(["pnpm", "install", "-g", `opencode-ai@${target}`])
-            break
           case "bun":
-            upgradeResult = yield* run(["bun", "install", "-g", `opencode-ai@${target}`])
+            // No npm package yet, fall back to GitHub releases via curl
+            upgradeResult = yield* upgradeCurl(target)
             break
           case "brew": {
             const formula = yield* getBrewFormula()
@@ -300,10 +333,10 @@ const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProcess.Serv
             break
           }
           case "choco":
-            upgradeResult = yield* run(["choco", "upgrade", "opencode", `--version=${target}`, "-y"])
+            upgradeResult = yield* run(["choco", "upgrade", "opendev", `--version=${target}`, "-y"])
             break
           case "scoop":
-            upgradeResult = yield* run(["scoop", "install", `opencode@${target}`])
+            upgradeResult = yield* run(["scoop", "install", `opendev@${target}`])
             break
           default:
             return yield* new UpgradeFailedError({ stderr: `Unknown installation method: ${m}` })

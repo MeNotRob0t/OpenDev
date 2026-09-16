@@ -113,6 +113,18 @@ const allTargets: {
   },
 ]
 
+const getBuildName = (item: typeof allTargets[0]) => {
+  const osMap: Record<string, string> = {
+    linux: "Linux",
+    darwin: "macOS",
+    win32: "Windows",
+  }
+  const osName = osMap[item.os] || item.os
+  const arch = item.arch === "x64" ? "x64" : "arm64"
+  const variant = item.avx2 === false ? "-baseline" : item.abi ? `-${item.abi}` : ""
+  return `OpenDev_Build_${osName}_${arch}${variant}`
+}
+
 const targets = singleFlag
   ? allTargets.filter((item) => {
       if (item.os !== process.platform || item.arch !== process.arch) {
@@ -153,7 +165,8 @@ for (const item of targets) {
   ]
     .filter(Boolean)
     .join("-")
-  console.log(`building ${name}`)
+  const buildName = getBuildName(item)
+  console.log(`building ${name} -> ${buildName}`)
   await $`mkdir -p dist/${name}/bin`
 
   const workerPath = "./src/cli/tui/worker.ts"
@@ -234,13 +247,26 @@ for (const item of targets) {
 
 if (Script.release) {
   for (const key of Object.keys(binaries)) {
+    const item = allTargets.find(t => {
+      const testName = [
+        pkg.name,
+        t.os === "win32" ? "windows" : t.os,
+        t.arch,
+        t.avx2 === false ? "baseline" : undefined,
+        t.abi === undefined ? undefined : t.abi,
+      ].filter(Boolean).join("-")
+      return testName === key
+    })
+    const buildName = item ? getBuildName(item) : key
+    const archiveName = buildName.replace(/ /g, "_")
     if (key.includes("linux")) {
-      await $`tar -czf ../../${key}.tar.gz *`.cwd(`dist/${key}/bin`)
+      await $`tar -czf ../../${archiveName}.tar.gz *`.cwd(`dist/${key}/bin`)
     } else {
-      await $`zip -r ../../${key}.zip *`.cwd(`dist/${key}/bin`)
+      await $`zip -r ../../${archiveName}.zip *`.cwd(`dist/${key}/bin`)
     }
   }
-  await $`gh release upload v${Script.version} ./dist/*.zip ./dist/*.tar.gz --clobber --repo ${process.env.GH_REPO}`
+  const repo = process.env.GH_REPO || "MeNotRob0t/OpenDev_Builds"
+  await $`gh release upload v${Script.version} ./dist/*.zip ./dist/*.tar.gz --clobber --repo ${repo}`
 }
 
 export { binaries }

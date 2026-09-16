@@ -1,0 +1,198 @@
+name: OpenDev Build
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+    paths:
+      - "packages/opendev/**"
+      - "packages/core/**"
+      - "packages/server/**"
+      - "packages/tui/**"
+      - "packages/protocol/**"
+      - "packages/schema/**"
+      - "packages/llm/**"
+      - "packages/plugin/**"
+      - "packages/sdk/**"
+      - "packages/effect-drizzle-sqlite/**"
+      - "packages/effect-sqlite-node/**"
+      - "packages/script/**"
+      - ".github/workflows/opendev-build.yml"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version override (e.g., 1.0.0)"
+        required: false
+        type: string
+      prerelease:
+        description: "Mark as pre-release"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+env:
+  GH_REPO: MeNotRob0t/OpenDev_Builds
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      release: ${{ steps.version.outputs.release }}
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup-bun
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+            RELEASE=true
+            PRERELEASE=${{ github.event.inputs.prerelease && 'true' || 'false' }}
+          else
+            # Auto-generate version from date for dev builds
+            VERSION="0.0.0-dev-$(date +%Y%m%d-%H%M%S)"
+            RELEASE=false
+            PRERELEASE=true
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "release=$RELEASE" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+          echo "prerelease=$PRERELEASE" >> $GITHUB_OUTPUT
+
+  build:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux-x64
+            build_args: "--single --os=linux --cpu=x64"
+          - os: ubuntu-latest
+            target: linux-arm64
+            build_args: "--single --os=linux --cpu=arm64"
+          - os: ubuntu-latest
+            target: linux-x64-musl
+            build_args: "--single --os=linux --cpu=x64 --abi=musl"
+          - os: ubuntu-latest
+            target: linux-arm64-musl
+            build_args: "--single --os=linux --cpu=arm64 --abi=musl"
+          - os: macos-latest
+            target: macos-x64
+            build_args: "--single --os=darwin --cpu=x64"
+          - os: macos-latest
+            target: macos-arm64
+            build_args: "--single --os=darwin --cpu=arm64"
+          - os: windows-latest
+            target: windows-x64
+            build_args: "--single --os=win32 --cpu=x64"
+          - os: windows-latest
+            target: windows-arm64
+            build_args: "--single --os=win32 --cpu=arm64"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup-bun
+
+      - name: Build OpenDev CLI
+        working-directory: packages/opendev
+        run: bun run script/build.ts ${{ matrix.build_args }}
+        env:
+          OPENCODE_VERSION: ${{ needs.version.outputs.version }}
+          OPENCODE_RELEASE: ${{ needs.version.outputs.release }}
+          GH_REPO: ${{ env.GH_REPO }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rename artifacts
+        working-directory: packages/opendev/dist
+        shell: bash
+        run: |
+          # Find the built directory and rename archives
+          for dir in */; do
+            if [[ -d "$dir/bin" ]]; then
+              # Get the build name from directory
+              BUILD_DIR=$(basename "$dir")
+              # Create archive with proper name
+              if [[ "$BUILD_DIR" == *"linux"* ]]; then
+                tar -czf "../../${BUILD_DIR}.tar.gz" -C "$dir/bin" .
+              else
+                zip -r "../../${BUILD_DIR}.zip" -C "$dir/bin" .
+              fi
+            fi
+          done
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: opendev-${{ matrix.target }}
+          path: |
+            packages/opendev/dist/*.tar.gz
+            packages/opendev/dist/*.zip
+
+  release:
+    needs: [version, build]
+    if: needs.version.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.version.outputs.tag }}
+          name: OpenDev ${{ needs.version.outputs.version }}
+          body: |
+            ## OpenDev ${{ needs.version.outputs.version }}
+            
+            Pre-built binaries for OpenDev CLI.
+            
+            ### Installation
+            
+            **Linux/macOS:**
+            ```bash
+            curl -fsSL https://github.com/MeNotRob0t/OpenDev_Builds/releases/download/${{ needs.version.outputs.tag }}/OpenDev_Build_Linux_x64.tar.gz | tar -xz -C /usr/local/bin
+            ```
+            
+            **Windows (PowerShell):**
+            ```powershell
+            Invoke-WebRequest -Uri "https://github.com/MeNotRob0t/OpenDev_Builds/releases/download/${{ needs.version.outputs.tag }}/OpenDev_Build_Windows_x64.zip" -OutFile "OpenDev.zip"
+            Expand-Archive -Path "OpenDev.zip" -DestinationPath "OpenDev"
+            ```
+            
+            ### Available Binaries
+            - OpenDev_Build_Linux_x64
+            - OpenDev_Build_Linux_arm64
+            - OpenDev_Build_Linux_x64_musl
+            - OpenDev_Build_Linux_arm64_musl
+            - OpenDev_Build_macOS_x64
+            - OpenDev_Build_macOS_arm64
+            - OpenDev_Build_Windows_x64
+            - OpenDev_Build_Windows_arm64
+          draft: false
+          prerelease: ${{ needs.version.outputs.prerelease }}
+          repo: ${{ env.GH_REPO }}
+          files: |
+            artifacts/opendev-*/*.tar.gz
+            artifacts/opendev-*/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
