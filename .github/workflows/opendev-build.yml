@@ -79,28 +79,20 @@ jobs:
         include:
           - os: ubuntu-latest
             target: linux-x64
-            build_args: "--single --os=linux --cpu=x64"
           - os: ubuntu-latest
             target: linux-arm64
-            build_args: "--single --os=linux --cpu=arm64"
           - os: ubuntu-latest
             target: linux-x64-musl
-            build_args: "--single --os=linux --cpu=x64 --abi=musl"
           - os: ubuntu-latest
             target: linux-arm64-musl
-            build_args: "--single --os=linux --cpu=arm64 --abi=musl"
           - os: macos-latest
             target: macos-x64
-            build_args: "--single --os=darwin --cpu=x64"
           - os: macos-latest
             target: macos-arm64
-            build_args: "--single --os=darwin --cpu=arm64"
           - os: windows-latest
             target: windows-x64
-            build_args: "--single --os=win32 --cpu=x64"
           - os: windows-latest
             target: windows-arm64
-            build_args: "--single --os=win32 --cpu=arm64"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -111,7 +103,7 @@ jobs:
 
       - name: Build OpenDev CLI
         working-directory: packages/opendev
-        run: bun run script/build.ts ${{ matrix.build_args }}
+        run: bun run script/build.ts --target=${{ matrix.target }}
         env:
           OPENCODE_VERSION: ${{ needs.version.outputs.version }}
           OPENCODE_RELEASE: "false"
