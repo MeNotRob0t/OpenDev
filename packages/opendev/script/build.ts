@@ -258,28 +258,7 @@ for (const item of targets) {
   binaries[name] = Script.version
 }
 
-if (Script.release) {
-  for (const key of Object.keys(binaries)) {
-    const item = allTargets.find(t => {
-      const testName = [
-        pkg.name,
-        t.os === "win32" ? "windows" : t.os,
-        t.arch,
-        t.avx2 === false ? "baseline" : undefined,
-        t.abi === undefined ? undefined : t.abi,
-      ].filter(Boolean).join("-")
-      return testName === key
-    })
-    const buildName = item ? getBuildName(item) : key
-    const archiveName = buildName.replace(/ /g, "_")
-    if (key.includes("linux")) {
-      await $`tar -czf ../../${archiveName}.tar.gz *`.cwd(`dist/${key}/bin`)
-    } else {
-      await $`zip -r ../../${archiveName}.zip *`.cwd(`dist/${key}/bin`)
-    }
-  }
-  const repo = process.env.GH_REPO || "MeNotRob0t/OpenDev_Builds"
-  await $`gh release upload v${Script.version} ./dist/*.zip ./dist/*.tar.gz --clobber --repo ${repo}`
-}
+// Binaries are built but not archived/uploaded here - CI handles that separately
+// via the "Rename artifacts" and "Release" workflow steps.
 
 export { binaries }
