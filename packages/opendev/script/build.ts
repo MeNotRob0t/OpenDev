@@ -129,7 +129,7 @@ const getBuildName = (item: typeof allTargets[0]) => {
 const targets = targetArg
   ? allTargets.filter((item) => {
       const itemName = [
-        item.os === "win32" ? "windows" : item.os,
+        item.os,
         item.arch,
         item.avx2 === false ? "baseline" : "",
         item.abi === undefined ? "" : item.abi,
