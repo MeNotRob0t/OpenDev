@@ -140,8 +140,8 @@ jobs:
         with:
           name: opendev-${{ matrix.target }}
           path: |
-            packages/opendev/*.tar.gz
-            packages/opendev/*.zip
+            packages/*.tar.gz
+            packages/*.zip
 
   release:
     needs: [version, build]
