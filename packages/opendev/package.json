@@ -102,6 +102,12 @@
     "@opentui/core": "catalog:",
     "@opentui/keymap": "catalog:",
     "@opentui/solid": "catalog:",
+    "@opentui/core-linux-arm64": "catalog:",
+    "@opentui/core-linux-x64": "catalog:",
+    "@opentui/core-darwin-arm64": "catalog:",
+    "@opentui/core-darwin-x64": "catalog:",
+    "@opentui/core-win32-arm64": "catalog:",
+    "@opentui/core-win32-x64": "catalog:",
     "@parcel/watcher": "2.5.1",
     "@pierre/diffs": "catalog:",
     "@silvia-odwyer/photon-node": "0.3.4",
@@ -150,7 +156,13 @@
     "ws": "8.21.0",
     "xdg-basedir": "5.1.0",
     "yargs": "18.0.0",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "@ff-labs/fff-bin-linux-arm64": "catalog:",
+    "@ff-labs/fff-bin-linux-x64": "catalog:",
+    "@ff-labs/fff-bin-darwin-arm64": "catalog:",
+    "@ff-labs/fff-bin-darwin-x64": "catalog:",
+    "@ff-labs/fff-bin-win32-arm64": "catalog:",
+    "@ff-labs/fff-bin-win32-x64": "catalog:"
   },
   "overrides": {
     "drizzle-orm": "catalog:"

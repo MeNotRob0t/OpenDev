@@ -120,26 +120,32 @@ jobs:
         working-directory: packages/opendev/dist
         shell: bash
         run: |
-          # Map directory names (windows-x64 in dir vs win32-x64 in target) to build names
-          declare -A NAMES=(
-            ["opendev-linux-arm64"]="OpenDev_Build_Linux_arm64"
-            ["opendev-linux-x64"]="OpenDev_Build_Linux_x64"
-            ["opendev-linux-arm64-musl"]="OpenDev_Build_Linux_arm64_musl"
-            ["opendev-linux-x64-musl"]="OpenDev_Build_Linux_x64_musl"
-            ["opendev-darwin-arm64"]="OpenDev_Build_macOS_arm64"
-            ["opendev-darwin-x64"]="OpenDev_Build_macOS_x64"
-            ["opendev-windows-arm64"]="OpenDev_Build_Windows_arm64"
-            ["opendev-windows-x64"]="OpenDev_Build_Windows_x64"
-          )
-          
+          # Portable mapping without associative arrays (macOS bash 3.2 compat)
+          get_build_name() {
+            case "$1" in
+              opendev-linux-arm64) echo "OpenDev_Build_Linux_arm64" ;;
+              opendev-linux-x64) echo "OpenDev_Build_Linux_x64" ;;
+              opendev-linux-arm64-musl) echo "OpenDev_Build_Linux_arm64_musl" ;;
+              opendev-linux-x64-musl) echo "OpenDev_Build_Linux_x64_musl" ;;
+              opendev-darwin-arm64) echo "OpenDev_Build_macOS_arm64" ;;
+              opendev-darwin-x64) echo "OpenDev_Build_macOS_x64" ;;
+              opendev-windows-arm64) echo "OpenDev_Build_Windows_arm64" ;;
+              opendev-windows-x64) echo "OpenDev_Build_Windows_x64" ;;
+              *) echo "$1" ;;
+            esac
+          }
+
           for dir in */; do
             DIR_NAME="${dir%/}"
-            if [[ -d "$dir/bin" ]]; then
-              BUILD_NAME="${NAMES[$DIR_NAME]:-$DIR_NAME}"
-              if [[ "$DIR_NAME" == *"linux"* ]]; then
+            if [ -d "$dir/bin" ]; then
+              BUILD_NAME=$(get_build_name "$DIR_NAME")
+              if echo "$DIR_NAME" | grep -q "linux"; then
+                tar -czf "../../${BUILD_NAME}.tar.gz" -C "$dir/bin" .
+              elif echo "$DIR_NAME" | grep -q "darwin"; then
                 tar -czf "../../${BUILD_NAME}.tar.gz" -C "$dir/bin" .
               else
-                zip -r "../../${BUILD_NAME}.zip" -C "$dir/bin" .
+                # Windows: use PowerShell for zip (cross-platform)
+                pwsh -c "Compress-Archive -Path '$dir/bin/*' -DestinationPath '../../${BUILD_NAME}.zip' -Force"
               fi
             fi
           done
