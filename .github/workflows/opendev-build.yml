@@ -87,13 +87,9 @@ jobs:
             target: linux-arm64-musl
             musl: true
           - os: macos-latest
-            target: darwin-x64
-          - os: macos-latest
             target: darwin-arm64
           - os: windows-latest
             target: win32-x64
-          - os: windows-latest
-            target: win32-arm64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -128,8 +124,6 @@ jobs:
               opendev-linux-arm64-musl) echo "OpenDev_Build_Linux_arm64_musl" ;;
               opendev-linux-x64-musl) echo "OpenDev_Build_Linux_x64_musl" ;;
               opendev-darwin-arm64) echo "OpenDev_Build_macOS_arm64" ;;
-              opendev-darwin-x64) echo "OpenDev_Build_macOS_x64" ;;
-              opendev-windows-arm64) echo "OpenDev_Build_Windows_arm64" ;;
               opendev-windows-x64) echo "OpenDev_Build_Windows_x64" ;;
               *) echo "$1" ;;
             esac
@@ -199,10 +193,8 @@ jobs:
             - OpenDev_Build_Linux_arm64
             - OpenDev_Build_Linux_x64_musl
             - OpenDev_Build_Linux_arm64_musl
-            - OpenDev_Build_macOS_x64
             - OpenDev_Build_macOS_arm64
             - OpenDev_Build_Windows_x64
-            - OpenDev_Build_Windows_arm64
           draft: false
           prerelease: ${{ needs.version.outputs.prerelease }}
           repo: ${{ env.GH_REPO }}
