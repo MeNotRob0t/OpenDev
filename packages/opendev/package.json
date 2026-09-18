@@ -166,13 +166,7 @@
     "ws": "8.21.0",
     "xdg-basedir": "5.1.0",
     "yargs": "18.0.0",
-    "zod": "catalog:",
-    "@ff-labs/fff-bin-linux-arm64": "catalog:",
-    "@ff-labs/fff-bin-linux-x64": "catalog:",
-    "@ff-labs/fff-bin-darwin-arm64": "catalog:",
-    "@ff-labs/fff-bin-darwin-x64": "catalog:",
-    "@ff-labs/fff-bin-win32-arm64": "catalog:",
-    "@ff-labs/fff-bin-win32-x64": "catalog:"
+    "zod": "catalog:"
   },
   "overrides": {
     "drizzle-orm": "catalog:"
