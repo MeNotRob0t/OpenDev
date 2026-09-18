@@ -78,12 +78,14 @@ jobs:
         include:
           - os: ubuntu-latest
             target: linux-x64
-          - os: ubuntu-latest
+          - os: ubuntu-24.04-arm
             target: linux-arm64
           - os: ubuntu-latest
             target: linux-x64-musl
-          - os: ubuntu-latest
+            musl: true
+          - os: ubuntu-24.04-arm
             target: linux-arm64-musl
+            musl: true
           - os: macos-latest
             target: darwin-x64
           - os: macos-latest
@@ -99,6 +101,13 @@ jobs:
           fetch-depth: 0
 
       - uses: ./.github/actions/setup-bun
+
+      - name: Install musl toolchain
+        if: ${{ matrix.musl }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools musl-dev
+        shell: bash
 
       - name: Build OpenDev CLI
         working-directory: packages/opendev
