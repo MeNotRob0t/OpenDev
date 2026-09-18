@@ -204,21 +204,8 @@ jobs:
             artifacts/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.OPENDEV_BUILDS_PAT }}
-````
-
-**The one actual change is:**
-
-```diff
-          else
-            # Auto-generate version from date for dev builds
             VERSION="1.0.0-dev-$(date +%Y%m%d-%H%M%S)"
--           RELEASE=false
-+           RELEASE=true
+            RELEASE=false
+            RELEASE=true
             PRERELEASE=true
-```
 
-So a push now goes:
-
-**push → version → build all 6 binaries → upload artifacts → create GitHub Release**
-
-Manual dispatch behavior remains unchanged.
